@@ -1,12 +1,14 @@
 name: learn-github-actions
-on: [push]
+on: push
 jobs:
-checks-bats-version:
-runs-on: ubuntu-latest
+ build:
+   runs-on: ubuntu-latest
 steps:
+- user: actions repo
 - uses: actions/checkout@v4
+- name: use node.js
 - uses: actions/setup-node@v4
-with:
-node-version: '20'
-- run: npm install -g bats
-- run: bats -v
+   with:
+node-version: '20.x'
+- run: npm install
+- run: npm run build
